@@ -1,0 +1,116 @@
+#include "LZespolona.hh"
+#include <iostream>
+#include <sstream>
+
+using namespace std;
+
+/*!
+ * Realizuje dodanie dwoch liczb zespolonych.
+ * Argumenty:
+ *    Skl1 - pierwszy skladnik dodawania,
+ *    Skl2 - drugi skladnik dodawania.
+ * Zwraca:
+ *    Sume dwoch skladnikow przekazanych jako parametry.
+ */
+
+void Wyswietl(LZespolona LZ)
+{
+  cout << "(" << LZ.re << showpos << LZ.im << "i)" << noshowpos;
+}
+
+//Przeciążenie operatora <<
+
+ostream& operator<<(ostream& os, LZespolona LZ) {
+	os << "(" << LZ.re << showpos << LZ.im << "i)" << noshowpos; 
+	return os;
+}
+
+//Przeciążenie operatora >>
+
+istream& operator>>(istream& is, LZespolona& LZ) {
+	stringstream buf;  // strumień pomocniczy
+	char chr; // aktualny znak
+
+	do {
+		is.get(chr);  // pobierz znak ze strumienia i wpisz do chr
+	} while(is && isspace(chr)); // usuwanie spacji
+
+	if(chr != '(') { //sprawdzanie wczytanego znaku czy jest nawiasem
+		cerr << "BRAK NAWIASU!";
+		return is;
+	}
+	is.get(chr); //pobranie kolejnego znaku
+	
+	do { //wczytaj liczbę rzeczywistą dopóki nie natrafisz na +,-
+	     //oznaczający początek liczby urojonej
+		if( (chr < '0' || chr > '9') && chr != '-' && chr != '.') {
+			cerr << "BŁĄD WCZYTYWANIA CZĘŚCI RZECZYWISTEJ" << endl;
+			return is;
+		}
+		buf << chr;
+		is.get(chr);
+	} while(chr != '-' && chr != '+');
+	
+	buf << " ";
+	if (chr == '-') {
+		buf << "-";
+	}
+
+	is.get(chr);
+
+	do {
+		if( (chr < '0' || chr > '9') && chr != 'i' && chr != '.' ) {
+			cerr << "BŁĄD WCZYTYWANIA CZĘŚCI UROJONEJ!" << endl;
+			return is;
+		}
+		buf << chr;
+		is.get(chr);
+	} while(chr != 'i');
+
+	while(chr != ')') {
+		is.get(chr);
+	}
+
+	buf >> LZ.re >> LZ.im;
+	return is;
+}
+
+//cin >> LZ1 >> LZ2;
+// Podaj liczby zespolone
+// : (3+7i)  (-2-21i)
+
+LZespolona utworz(double re, double im)
+{
+  LZespolona LZ;
+  LZ.re=re;
+  LZ.im=im;
+
+  return LZ;
+}
+
+LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2)
+{
+  LZespolona  Wynik;
+
+  Wynik.re = Skl1.re + Skl2.re;
+  Wynik.im = Skl1.im + Skl2.im;
+  return Wynik;
+}
+
+LZespolona  operator - (LZespolona  Skl1,  LZespolona  Skl2)
+{
+  LZespolona  Wynik;
+
+  Wynik.re = Skl1.re - Skl2.re;
+  Wynik.im = Skl1.im - Skl2.im;
+  return Wynik;
+}
+
+LZespolona  operator * (LZespolona  Skl1,  LZespolona  Skl2)
+{
+  LZespolona  Wynik;
+
+  Wynik.re = Skl1.re * Skl2.re;
+  Wynik.im = (Skl1.im * Skl2.im * -1) + (Skl1.im * Skl2.re) + (Skl2.im * Skl1.re);
+  return Wynik;
+}
