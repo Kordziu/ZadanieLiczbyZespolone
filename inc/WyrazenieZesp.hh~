@@ -26,8 +26,10 @@ struct WyrazenieZesp {
  * Funkcje ponizej nalezy zdefiniowac w module.
  *
  */
-
-void utworz(double re, double im);
+ostream& operator<<(ostream&, WyrazenieZesp&);
+istream& operator>>(istream&, WyrazenieZesp&);
+LZespolona Wyswietl(LZespolona LZ);
+LZespolona utworz(double re, double im);
 void Wyswietl(WyrazenieZesp  WyrZ);
 LZespolona Oblicz(WyrazenieZesp  WyrZ);
 

@@ -27,7 +27,9 @@ struct WyrazenieZesp {
  *
  */
 ostream& operator<<(ostream&, WyrazenieZesp&);
+ostream& operator<<(ostream&, Operator&);
 istream& operator>>(istream&, WyrazenieZesp&);
+istream& operator>>(istream&, Operator&);
 LZespolona Wyswietl(LZespolona LZ);
 LZespolona utworz(double re, double im);
 void Wyswietl(WyrazenieZesp  WyrZ);

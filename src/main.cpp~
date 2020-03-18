@@ -10,12 +10,12 @@ int main(int argc, char **argv)
   cout << L1 << endl;
   LZespolona L2=utworz(3,-2);
   cout << L2 << endl;
-  LZespolona L3=L1+L2;
+  LZespolona L3=L1/L2;
   cout << L3 << endl;
 
-	WyrazenieZesp WZ;
-	cin >> WZ;
-	cout << endl << WZ;
+  //WyrazenieZesp WZ;
+	//cin >> WZ;
+	//cout << endl << WZ;
 
   /*
   if (argc < 2) {
