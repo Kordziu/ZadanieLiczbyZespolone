@@ -1,7 +1,7 @@
 #include "LZespolona.hh"
 #include <iostream>
 #include <sstream>
-
+#include <cmath>
 using namespace std;
 
 /*!
@@ -75,9 +75,6 @@ istream& operator>>(istream& is, LZespolona& LZ) {
 	return is;
 }
 
-//cin >> LZ1 >> LZ2;
-// Podaj liczby zespolone
-// : (3+7i)  (-2-21i)
 
 LZespolona utworz(double re, double im)
 {
@@ -110,7 +107,47 @@ LZespolona  operator * (LZespolona  Skl1,  LZespolona  Skl2)
 {
   LZespolona  Wynik;
 
-  Wynik.re = Skl1.re * Skl2.re;
-  Wynik.im = (Skl1.im * Skl2.im * -1) + (Skl1.im * Skl2.re) + (Skl2.im * Skl1.re);
+  Wynik.re = Skl1.re * Skl2.re + (Skl1.im * Skl2.im * -1);
+  Wynik.im = (Skl1.im * Skl2.re) + (Skl2.im * Skl1.re);
+  return Wynik;
+}
+
+LZespolona operator / (LZespolona Skl1, LZespolona Skl2)
+{
+  LZespolona Wynik;
+  double dzielnik;
+  LZespolona gora;
+  LZespolona sprz;
+
+  dzielnik=modul(Skl2)*modul(Skl2);
+  sprz=sprzezenie(Skl2);
+  gora.re=Skl1.re*sprz.re;
+  gora.im= (Skl1.im * Skl2.im * -1) + (Skl1.im * Skl2.re) + (Skl2.im * Skl1.re);
+  Wynik=gora/dzielnik;
+  
+  return Wynik;
+}
+
+
+LZespolona sprzezenie(LZespolona Skl1)
+{
+  LZespolona Wynik;
+   Wynik.re=Skl1.re;
+   Wynik.im=Skl1.im*-1;
+   return Wynik;
+}
+
+double modul(LZespolona Skl1)
+{
+  double Wynik;
+  Wynik=sqrt((Skl1.re * Skl1.re) + (Skl1.im * Skl1.im));
+  return Wynik;
+}
+
+LZespolona operator / (LZespolona Skl1, double liczba)
+{
+  LZespolona Wynik;
+  Wynik.re=Skl1.re/liczba;
+  Wynik.im=Skl1.im/liczba;
   return Wynik;
 }

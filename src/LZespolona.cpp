@@ -121,8 +121,7 @@ LZespolona operator / (LZespolona Skl1, LZespolona Skl2)
 
   dzielnik=modul(Skl2)*modul(Skl2);
   sprz=sprzezenie(Skl2);
-  gora.re=Skl1.re*sprz.re;
-  gora.im= (Skl1.im * Skl2.im * -1) + (Skl1.im * Skl2.re) + (Skl2.im * Skl1.re);
+  gora=Skl1*sprz;
   Wynik=gora/dzielnik;
   
   return Wynik;

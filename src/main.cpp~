@@ -6,6 +6,7 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
+  //Wczytywanie, wyswietlanie liczby zespolonej i obliczanie wyrazenia zespolonego test
   LZespolona L1=utworz(2,3);
   cout << L1 << endl;
   LZespolona L2=utworz(3,-2);
@@ -13,10 +14,14 @@ int main(int argc, char **argv)
   LZespolona L3=L1/L2;
   cout << L3 << endl;
 
-  //WyrazenieZesp WZ;
-	//cin >> WZ;
-	//cout << endl << WZ;
+  //Wczytywanie i wyswietlanie wyrazenia zespolonego test
+  
+  WyrazenieZesp WZ;
+  cout << "podaj wyrazenie" << endl;
+  cin >> WZ;
+  cout << WZ << endl;
 
+  
   /*
   if (argc < 2) {
     cout << endl;
