@@ -15,22 +15,65 @@ void Wyswietl(WyrazenieZesp WyrZ)
 }
 */
 //Przeciązenie operatora do wyświetlania Wyrazenia zespolonego
-//ostream& operator<<(ostream& os, WyrazenieZesp& wyr) {
-//	os << wyr.Arg1 << wyr.Op << wyr.Arg2;
-//	return os;
-//}
+ostream& operator<<(ostream& os, WyrazenieZesp& wyr) {
+	os << wyr.Arg1 << wyr.Op << wyr.Arg2;
+	return os;
+}
+
+ostream& operator<<(ostream& os, Operator& op) {
+  char znak;
+ 
+  switch(op) {
+    case Op_Dodaj:
+      znak = '+';
+      break;
+    case Op_Odejmij:
+      znak = '-';
+      break;
+    case Op_Mnoz:
+      znak = '*';
+      break;
+    case Op_Dziel:
+      znak ='/';
+      break;
+  }
+  os<<znak;
+  return os;
+}
+
 //Przeciążenie operatora do wczytywania Wyrazenia zespolonego
-//istream& operator>>(istream& is, WyrazenieZesp& wyr) {
-//	is >> wyr.Arg1 >> wyr.Op >> wyr.Arg2;
-//	return is;
-//}
+istream& operator>>(istream& is, WyrazenieZesp& wyr) {
+	is >> wyr.Arg1 >> wyr.Op >> wyr.Arg2;
+	return is;
+}
+
+istream& operator>>(istream& is, Operator& op) {
+  char znak;
+  is >> znak;
+  switch(znak) {
+    case '+':
+      op = Op_Dodaj;
+      break;
+    case '-':
+      op = Op_Odejmij;
+      break;
+    case '*':
+      op = Op_Mnoz;
+      break;
+    case '/':
+      op = Op_Dziel;
+      break;
+  }
+  return is;
+}
+
 
 LZespolona Oblicz(WyrazenieZesp WyrZ)
 {
     LZespolona Wynik;
     LZespolona LZ1;
     LZespolona LZ2;
-  switch(0){
+  switch(WyrZ.Op){
 
   case Op_Dodaj:
     Wynik=LZ1+LZ2;

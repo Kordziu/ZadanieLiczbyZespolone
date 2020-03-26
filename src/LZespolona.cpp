@@ -36,7 +36,8 @@ istream& operator>>(istream& is, LZespolona& LZ) {
 	} while(is && isspace(chr)); // usuwanie spacji
 
 	if(chr != '(') { //sprawdzanie wczytanego znaku czy jest nawiasem
-		cerr << "BRAK NAWIASU!";
+	  is.setstate(ios::failbit);
+	  // cerr << "BRAK NAWIASU!"<<endl;
 		return is;
 	}
 	is.get(chr); //pobranie kolejnego znaku
@@ -44,7 +45,8 @@ istream& operator>>(istream& is, LZespolona& LZ) {
 	do { //wczytaj liczbę rzeczywistą dopóki nie natrafisz na +,-
 	     //oznaczający początek liczby urojonej
 		if( (chr < '0' || chr > '9') && chr != '-' && chr != '.') {
-			cerr << "BŁĄD WCZYTYWANIA CZĘŚCI RZECZYWISTEJ" << endl;
+		  is.setstate(ios::failbit);
+		  //cerr << "BŁĄD WCZYTYWANIA CZĘŚCI RZECZYWISTEJ" << endl;
 			return is;
 		}
 		buf << chr;
@@ -60,7 +62,8 @@ istream& operator>>(istream& is, LZespolona& LZ) {
 
 	do {
 		if( (chr < '0' || chr > '9') && chr != 'i' && chr != '.' ) {
-			cerr << "BŁĄD WCZYTYWANIA CZĘŚCI UROJONEJ!" << endl;
+		  is.setstate(ios::failbit);
+		  //cerr << "BŁĄD WCZYTYWANIA CZĘŚCI UROJONEJ!" << endl;
 			return is;
 		}
 		buf << chr;
@@ -149,4 +152,14 @@ LZespolona operator / (LZespolona Skl1, double liczba)
   Wynik.re=Skl1.re/liczba;
   Wynik.im=Skl1.im/liczba;
   return Wynik;
+}
+
+int operator == (LZespolona Skl1, LZespolona Skl2)
+{
+  if(Skl1.re==Skl2.re && Skl1.im==Skl2.im){
+    return 1;
+  }
+  else {
+    return 0;
+  }
 }

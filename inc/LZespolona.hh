@@ -33,6 +33,7 @@ ostream& operator << (ostream&, LZespolona);
 istream& operator >> (istream&, LZespolona&);
 LZespolona sprzezenie(LZespolona);
 LZespolona operator / (LZespolona, double);
+int operator == (LZespolona, LZespolona);
 double modul(LZespolona);
 
 #endif

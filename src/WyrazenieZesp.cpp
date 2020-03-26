@@ -71,24 +71,23 @@ istream& operator>>(istream& is, Operator& op) {
 LZespolona Oblicz(WyrazenieZesp WyrZ)
 {
     LZespolona Wynik;
-    LZespolona LZ1;
-    LZespolona LZ2;
-  switch(0){
+    
+  switch(WyrZ.Op){
 
   case Op_Dodaj:
-    Wynik=LZ1+LZ2;
+    Wynik=WyrZ.Arg1+WyrZ.Arg2;
   break;
 
   case Op_Odejmij:
-    Wynik=LZ1-LZ2;  
+    Wynik=WyrZ.Arg1-WyrZ.Arg2;  
   break;
 
   case Op_Mnoz:
-    Wynik=LZ1*LZ2;
+    Wynik=WyrZ.Arg1*WyrZ.Arg2;
   break;
 
   case Op_Dziel:
-    Wynik=LZ1/LZ2;
+    Wynik=WyrZ.Arg1/WyrZ.Arg2;
   break;
   }
   return Wynik;
