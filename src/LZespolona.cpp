@@ -149,8 +149,13 @@ double modul(LZespolona Skl1)
 LZespolona operator / (LZespolona Skl1, double liczba)
 {
   LZespolona Wynik;
+  if(liczba==0){
+  cout<<"BŁĘDNE WYRAŻENIE - NIE DZIELIMY PRZEZ 0"<<endl;
+  }
+  else
   Wynik.re=Skl1.re/liczba;
   Wynik.im=Skl1.im/liczba;
+  
   return Wynik;
 }
 

@@ -8,11 +8,11 @@ using namespace std;
 int main(int argc, char **argv)
 {
   // Wczytywanie, wyswietlanie liczby zespolonej i obliczanie wyrazenia zespolonego test
-  // LZespolona L1=utworz(2,1);
+  //LZespolona L1=utworz(0,0);
   //cout << L1 << endl;
-  //LZespolona L2=utworz(1,2);
+  //LZespolona L2=utworz(0,0);
   //cout << L2 << endl;
-  //LZespolona L3=L1+L2;
+  //LZespolona L3=L1/L2;
   //cout << L3 << endl;
 
   //Wczytywanie i wyswietlanie wyrazenia zespolonego test
@@ -23,7 +23,7 @@ int main(int argc, char **argv)
   cout << WZ << endl;
   */
   
-  
+    
   if (argc < 2) {
     cout << endl;
     cout << " Brak opcji okreslajacej rodzaj testu." << endl;
